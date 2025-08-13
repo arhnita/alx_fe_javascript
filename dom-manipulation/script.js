@@ -258,7 +258,7 @@ async function syncQuotes() {
         populateCategories();
         
         // Create notification element for data updates
-        createSyncNotification(`Synced ${newQuotes.length} new quotes from server!`);
+        createSyncNotification(`Quotes synced with server!`);
       } else {
         createSyncNotification('No new quotes from server.');
       }
