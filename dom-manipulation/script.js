@@ -48,23 +48,49 @@ function createAddQuoteForm() {
   console.log('Add quote form elements are present in the DOM');
 }
 
-function addQuote(){
+
+
+function addQuote() {
     const newQuoteText = document.getElementById('newQuoteText').value;
     const newQuoteCategory = document.getElementById('newQuoteCategory').value;
-    if(newQuoteText && newQuoteCategory){
-        newQuote = {
+    
+    if (newQuoteText && newQuoteCategory) {
+        const newQuote = {
             text: newQuoteText,
             category: newQuoteCategory
-        }
-        quotes.push(newQuote)
-        alert('quote added successfully')
+        };
         
-        newQuoteText.value = '';
-        newQuoteCategory.value = '';
+        // Update the quotes array
+        quotes.push(newQuote);
+        
+        // Update the DOM dynamically using createElement and appendChild
+        const quoteDisplay = document.getElementById('quoteDisplay');
+        
+        // Clear previous content
+        quoteDisplay.innerHTML = '';
+        
+        // Create quote text element
+        const quoteTextElement = document.createElement('p');
+        quoteTextElement.textContent = `"${newQuote.text}"`;
+        
+        // Create category element
+        const categoryElement = document.createElement('p');
+        const strongElement = document.createElement('strong');
+        strongElement.textContent = `Category: ${newQuote.category}`;
+        categoryElement.appendChild(strongElement);
+        
+        // Append elements to the display
+        quoteDisplay.appendChild(quoteTextElement);
+        quoteDisplay.appendChild(categoryElement);
+        
+        // Clear the input fields
+        document.getElementById('newQuoteText').value = '';
+        document.getElementById('newQuoteCategory').value = '';
+        
+        alert('Quote added successfully!');
     } else {
-        alert('Please enter text and category')
+        alert('Please enter both quote text and category.');
     }
-
 }
 
 
